@@ -40,7 +40,7 @@ function addClientsExtensions(account_extensions, SPREADSHEET_URL){
   
   	//Open spreadsheet and get tabs
 	var ss = openSpreadsheet(SPREADSHEET_URL);
-  	var sheet_extensions = ss.getSheetByName('Teste-AdwordsExtensions');
+  	var sheet_extensions = ss.getSheetByName('AdwordsExtensions');
 
   	//Begin - Clear old data
   	var sheet_extensions_rows = sheet_extensions.getDataRange().getNumRows();
@@ -115,8 +115,8 @@ function addClientsCampaigns(accounts, SPREADSHEET_URL){
   
   	//Open spreadsheet and get tabs
 	var ss = openSpreadsheet(SPREADSHEET_URL);
-  	var sheet_clientes = ss.getSheetByName('Teste-Clientes');
-  	var sheet_adwordsCampaign = ss.getSheetByName('Teste-AdwordsCampaign');
+  	var sheet_clientes = ss.getSheetByName('Clientes');
+  	var sheet_adwordsCampaign = ss.getSheetByName('AdwordsCampaign');
 
   	//Begin - Clear old data
   	var sheet_clientes_rows = sheet_clientes.getDataRange().getNumRows();
