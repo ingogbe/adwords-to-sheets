@@ -1,6 +1,6 @@
 function main() {
 
-	var SPREADSHEET_URL = 'GOOGLE_SPREADSHEET_URL';
+	var SPREADSHEET_URL = 'SUA_SPREADSHEET_URL';
 
   	var accounts = listAccountsDetailedCampaigns();
   	addClientsCampaigns(accounts, SPREADSHEET_URL);
@@ -121,12 +121,16 @@ function addClientsCampaigns(accounts, SPREADSHEET_URL){
   	//Begin - Clear old data
   	var sheet_clientes_rows = sheet_clientes.getDataRange().getNumRows();
     var sheet_adwordsCampaign_rows = sheet_adwordsCampaign.getDataRange().getNumRows();
-  
-    var sheet_clientes_dataRangeClear = 'A2:B' + sheet_clientes_rows;
- 	var sheet_adwordsCampaign_dataRangeClear = 'A2:O' + sheet_adwordsCampaign_rows;
 
- 	clearSheetDataRange(sheet_clientes, sheet_clientes_dataRangeClear);
-	clearSheetDataRange(sheet_adwordsCampaign, sheet_adwordsCampaign_dataRangeClear);
+    if(sheet_clientes_rows > 0){
+    	var sheet_clientes_dataRangeClear = 'A2:B' + sheet_clientes_rows;
+    	clearSheetDataRange(sheet_clientes, sheet_clientes_dataRangeClear);
+    }
+
+    if(sheet_adwordsCampaign_rows > 0){
+    	var sheet_adwordsCampaign_dataRangeClear = 'A2:O' + sheet_adwordsCampaign_rows;
+		clearSheetDataRange(sheet_adwordsCampaign, sheet_adwordsCampaign_dataRangeClear);
+    }
 	//End - Clear old data
 
 
@@ -161,6 +165,9 @@ function addClientsCampaigns(accounts, SPREADSHEET_URL){
 	if(clientes_dataRows.length > 0){
 		var sheet_clientes_dataRangeInsert = 'A2:B' + (clientes_dataRows.length + 1);
 		appendARowRange(sheet_clientes, clientes_dataRows ,sheet_clientes_dataRangeInsert);
+
+		var range = sheet_clientes.getRange(sheet_clientes_dataRangeInsert);
+		range.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
 	}
 
 	if(adwordsCampaign_dataRows.length > 0){
